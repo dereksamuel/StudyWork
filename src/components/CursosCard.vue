@@ -14,7 +14,7 @@
                             strong(v-if="cardCurse.publication1 != 'No'") {{ cardCurse.publication1 }}
                             strong(v-if="cardCurse.publication2 != 'No'") {{ cardCurse.publication2 }}
                             strong(v-if="cardCurse.publication3 != 'No'") {{ cardCurse.publication3 }}
-            slot(name="deleteMe")
+            slot(name="footer")
 </template>
 
 <script>

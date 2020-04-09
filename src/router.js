@@ -2,7 +2,7 @@ import Vue from "vue";
 import Router from "vue-router";
 
 import LoginFirst from "@/views/LoginFirst";
-import Error from "@/views/Error";
+import ErrorComponent from "@/views/Error";
 import Home from "@/views/Home";
 import Status from "@/views/Status";
 import Curses from "@/views/Curses";
@@ -46,18 +46,30 @@ export default new Router({
       path: "estados",
       name: "estados",
       component: Status,
+      async beforeEnter(to, from, next) {
+        if (await checkAuth()) next();
+        else next("/");
+      }
     },
 
     {
       path: "progreso",
       name: "progreso",
       component: Progress,
+      async beforeEnter(to, from, next) {
+        if (await checkAuth()) next();
+        else next("/");
+      }
     },
 
     {
       path: "work",
       name: "work",
       component: Works,
+      async beforeEnter(to, from, next) {
+        if (await checkAuth()) next();
+        else next("/");
+      }
     },
 
 
@@ -65,18 +77,26 @@ export default new Router({
       path: "cursos",
       name: "cursos",
       component: Curses,
+      async beforeEnter(to, from, next) {
+        if (await checkAuth()) next();
+        else next("/");
+      }
     },
 
     {
       path: "perfil",
       name: "perfil",
       component: Perfil,
+      async beforeEnter(to, from, next) {
+        if (await checkAuth()) next();
+        else next("/");
+      }
     },
 
     {
       path: "*",
       name: "error",
-      component: Error
+      component: ErrorComponent
     }
   ]
 });

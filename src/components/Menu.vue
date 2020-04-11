@@ -1,35 +1,40 @@
 <template lang="pug">
     #MyApp
-        b-navbar(toggleable="sm" type="light" variant="dark")
-            b-navbar-toggle(target="nav-text-collapse")
-            b-navbar-brand(style=" cursor: pointer;"  @click="Home")
-                img(src="../../public/img/botanico.png" alt="" class="icon")
-                strong(style="color: white;") Student Work
-            b-collapse(id="nav-text-collapse" is-nav)
-                b-navbar-nav
-                    b-nav-text(@click="cursos") Cursos
-                    b-nav-text(@click="status") Estados
-                    b-nav-text(@click="progress") Progresos
-                    b-nav-text(@click="works") Tareas
-                b-navbar-nav(class="ml-auto")
-                    b-nav-item-dropdown(right)
-                        template(v-slot:button-content)
-                            b-avatar(variant="light" style="margin-right: 7px;")
-                        b-dropdown-item(@click="perfil") {{ nameUser }}
-                        b-dropdown-item(@click="logout") Cerrar sesión
+        .app
+            b-navbar(toggleable="sm" type="light" variant="dark")
+                b-navbar-toggle(target="nav-text-collapse")
+                b-navbar-brand(style=" cursor: pointer;"  @click="Home")
+                    img(src="https://firebasestorage.googleapis.com/v0/b/myworkspace-b1621.appspot.com/o/images%2Fbotanico.png?alt=media&token=163f3875-5f7b-47ab-86b6-436f1a1b66a6" alt="" class="icon")
+                    strong(style="color: white;") Student Work
+                b-collapse(id="nav-text-collapse" is-nav)
+                    b-navbar-nav
+                        b-nav-text(@click="cursos") Cursos
+                        b-nav-text(@click="status") Estados
+                        b-nav-text(@click="progress") Progresos
+                        b-nav-text(@click="works") Tareas
+                    b-navbar-nav(class="ml-auto")
+                        b-nav-item-dropdown(right)
+                            template(v-slot:button-content)
+                                b-avatar(variant="light" style="margin-right: 7px;")
+                            b-dropdown-item(@click="perfil") {{ nameUser }}
+                            b-dropdown-item(@click="logout") Cerrar sesión
+        Loader(v-show="isLoading")
 </template>
 
 <script>
 import { fb } from "../helpers/firebase";
+import Loader from "./graphics/Animation";
 
 export default {
-    name: 'home',
+    name: 'Menu',
+    components: { Loader },
 
     data() {
         return {
             Menu: false,
             Oruga: true,
             Mariposa: false,
+            isLoading: false,
             showDismissibleAlert: '',
             showDismissibleAlertnice: '',
             showDismissibleAlertWarning: ''
@@ -45,12 +50,48 @@ export default {
     },
 
     methods: {
-        perfil() { this.$router.push({ name: "perfil" }); },
-        works() { this.$router.push({ name: "work" }); },
-        status() { this.$router.push({ name: "estados" }); },
-        cursos() { this.$router.push({ name: "cursos" });},
-        progress() { this.$router.push({ name: "progreso" });},
-        Home() { this.$router.push({ name: "home" }); },
+        perfil() {
+            this.isLoading = true;
+            setTimeout(() => {
+                this.isLoading = false
+                this.$router.push({ name: "perfil" });
+            },1000);
+        },
+        works() {
+            this.isLoading = true;
+            setTimeout(() => {
+                this.isLoading = false
+                this.$router.push({ name: "work" });
+            },1000);
+        },
+        status() {
+            this.isLoading = true;
+            setTimeout(() => {
+                this.isLoading = false
+                this.$router.push({ name: "estados" });
+            },1000);
+        },
+        cursos() {
+            this.isLoading = true;
+            setTimeout(() => {
+                this.isLoading = false
+                this.$router.push({ name: "cursos" });
+            },1000);
+        },
+        progress() {
+            this.isLoading = true;
+            setTimeout(() => {
+                this.isLoading = false
+                this.$router.push({ name: "progreso" });
+            },1000);
+        },
+        Home() {
+            this.isLoading = true;
+            setTimeout(() => {
+                this.isLoading = false
+                this.$router.push({ name: "home" });
+            },1000);
+        },
         logout() { return fb.auth().signOut(); },
         userLogin() {
             var user = fb.auth().currentUser;

@@ -1,16 +1,7 @@
 <template lang="pug">
     #curses
         Menu
-        h1 This is a progress
-        p Hola {{ Card.name }}
-        p {{ YouNow }}
-        b-button(@click="Hello") Watch in console
-        b-button(@click="HtoC") Change
-        area-chart(
-            :colors="['green']"
-            :min="1"
-            :max="100"
-            :data="parseFloat(Card.value)")
+        h1(align="center") {{ Card.name }}
 </template>
 
 <script>
@@ -21,6 +12,7 @@ const firebaseMyUser = fb.firestore().collection("usuarios");
 const firebaseCollection = "cursos";
 
 export default {
+    name: 'WorkPersonal',
     components: { Menu },
 
     data() {
@@ -36,8 +28,7 @@ export default {
         }
     },
 
-    methods: {
-        Hello() {
+    created() {
             firebaseMyUser
             .doc(`dc_${fb.auth().currentUser.uid}`)
             .collection(firebaseCollection)
@@ -48,12 +39,10 @@ export default {
                 });
             this.Card = list;
             })
+            this.$bus.$on("name", track => {
+                this.Card = track;
+            });
             // TODO: push to status with base in the push of curses in USERS
         },
-
-        HtoC() {
-            this.history = this.Card
-        }
-    }
 }
 </script>

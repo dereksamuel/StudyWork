@@ -2,19 +2,19 @@
     #cursesCards
         b-card(:class="cardCurse.sex.toLowerCase() === 'masculino' ? 'masculino' : 'femenino'")
             .card-body
-                h5(class="card-title") {{ cardCurse.name }}
+                h5(class="card-title" @click="personal(cardCurse)") {{ cardCurse.name }}
                 p.card-text {{ cardCurse.description }}
             .card-footer
                 small(class="text-muted")
                     p
-                        img(src="../../public/img/reloj-de-arena.png" style="width: 36px;")
+                        img(src="https://firebasestorage.googleapis.com/v0/b/myworkspace-b1621.appspot.com/o/images%2Freloj-de-arena.png?alt=media&token=ab6e2d00-1153-4d1e-ae09-36abf070e0b3" style="width: 36px;")
                         strong(style="margin-left: 25px; font-size: 20px;") {{ cardCurse.value }}
                     p
                         div Estudiando: 
                             strong(v-if="cardCurse.publication1 != 'No'") {{ cardCurse.publication1 }}
                             strong(v-if="cardCurse.publication2 != 'No'") {{ cardCurse.publication2 }}
                             strong(v-if="cardCurse.publication3 != 'No'") {{ cardCurse.publication3 }}
-            slot(name="deleteMe")
+            slot(name="footer")
 </template>
 
 <script>
@@ -27,6 +27,13 @@ export default {
         return {
             z: '../../public/img/empresario.png',
             x: '../../public/img/mujer-de-negocios.png'
+        }
+    },
+
+    methods: {
+        personal(names) {
+            this.$bus.$emit("name", names);
+            this.$router.push({ name: 'workPersonal' });
         }
     }
 }

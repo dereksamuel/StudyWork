@@ -7,7 +7,7 @@
       <span class="notificaciones--update">
         <img
           id="reload"
-          src="../../public/img/icons8-actualizar-480.png"
+          src="https://firebasestorage.googleapis.com/v0/b/myworkspace-b1621.appspot.com/o/images%2Ficons8-actualizar-480.png?alt=media&token=5a999fcf-3d48-41ea-b786-75ebe3b10069"
           alt="Actualizar"
           @click="upload"
         />

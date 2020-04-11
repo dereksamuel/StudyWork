@@ -2,7 +2,12 @@ import Vue from 'vue';
 import BootstrapVue from 'bootstrap-vue';
 import App from './App.vue';
 import router from "@/router";
+import Chartick from "vue-chartkick";
+import Chart from "chart.js";
+import Bus from "./plugins/bus";
 
+Vue.use(Chartick.use(Chart));
+Vue.use(Bus);
 Vue.use(BootstrapVue);
 
 import 'bootstrap/dist/css/bootstrap.css'

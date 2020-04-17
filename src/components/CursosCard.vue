@@ -31,9 +31,8 @@ export default {
     },
 
     methods: {
-        personal(names) {
-            this.$bus.$emit("name", names);
-            this.$router.push({ name: 'workPersonal' });
+        personal({ id }) {
+            this.$router.push({ name: 'workPersonal', params: { id } });
         }
     }
 }

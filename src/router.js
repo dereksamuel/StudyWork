@@ -92,19 +92,16 @@ export default new Router({
         if (await checkAuth()) next();
         else next("/");
       }
-<<<<<<< HEAD
     },
 
     {
-      path: 'workPersonal/:id',
+      path: 'workPersonal/:id', //TODO: falta la navegación programática
       component: WorkPersonal,
       name: "workPersonal",
       async beforeEnter(to, from, next) {
         if (await checkAuth()) next();
         else next("/");
       }
-=======
->>>>>>> 3a4088fd876a4b639bd6a71dd769310e10b55959
     },
 
     {

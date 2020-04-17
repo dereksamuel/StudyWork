@@ -9,7 +9,7 @@
           <b-form-input style="height: 31px; font-size: 15px;" placeholder='Contraseña' type='password' v-model="pass" :class="!pass && !user ? 'tomato' : 'white'"></b-form-input>
           <br>
           <b-card-text class="createModal" align='center' style="color: rgb(13, 220, 106);  font-weight: initial;" @click="$bvModal.show('modal-scoped')" variant="primary">Crear cuenta</b-card-text>
-          <b-card-text align='center'><div style="color: rgb(13, 220, 106); font-weight: initial;" v-b-modal.modal-prevent-closing>¿olvidó su contraseña?</div></b-card-text>
+          <b-card-text align='center' class="createModal"><div style="color: rgb(13, 220, 106); font-weight: initial;" v-b-modal.modal-prevent-closing>¿olvidó su contraseña?</div></b-card-text>
           <b-button variant='danger' style="width: 100%;" @click="Validar()"><a href="javascript:void(0)" class="ul_countainer_button--ingresar" style="text-decoration: none; color: white;">INGRESAR</a>
           </b-button>
         </b-card>
